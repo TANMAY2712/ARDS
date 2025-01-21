@@ -31,9 +31,8 @@ jobs:
         run: flutter build apk --debug
 
       # Step 5: Upload APK as artifact
-      - name: Push to Release
+      - name: Upload debug APK
         uses: actions/upload-artifact@v3
         with:
-          artifacts: "buield/app/outputs/apk/release/*"
-          tag: v0.0.1
-          token: ${{ secrets.TOKEN }}
+          name: debug-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
