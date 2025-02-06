@@ -1,39 +1,53 @@
-name: Build Flutter Debug APK
-
+name: CI
 on:
-  push:
+  pull_request:
     branches:
-      - main # Specify the branch to trigger the build (e.g., main or master)
+      - master
 
 jobs:
-  build:
-    runs-on: ubuntu-24.04
-
+  flutter_test:
+    name: Run flutter test and analyze
+    runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the code
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # Step 2: Set up Flutter environment
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
         with:
-          channel: stable # Specify the Flutter version
-
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Run Flutter tests
-        run: flutter test
-
-      # Step 4: Build APK
-      - name: Build debug APK
-        run: flutter build apk --debug
-
-      # Step 5: Upload APK as artifact
-      - name: Upload debug APK
-        uses: actions/upload-artifact@v4
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
         with:
-          name: debug-apk
-          path: build/app/outputs/flutter-apk/app-debug.apk
+          channel: "stable"
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
+  build_ios:
+    name: Build Flutter (iOS)
+    needs: [flutter_test]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+      - run: flutter pub get
+      - run: flutter clean
+      - run: flutter build ios --release --no-codesign
+
+  build_appbundle:
+    name: Build Flutter (Android)
+    needs: [flutter_test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+      - run: flutter pub get
+      - run: flutter clean
+      - run: flutter build appbundle
