@@ -24,7 +24,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-
+      - name: Run Flutter tests
+        run: flutter test
 
       # Step 4: Build APK
       - name: Build debug APK
