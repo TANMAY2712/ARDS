@@ -8,6 +8,7 @@ void main() {
 }
 
 class History extends StatefulWidget {
+  const History({super.key});
   @override
   _TrainHistoryScreenState createState() => _TrainHistoryScreenState();
 }

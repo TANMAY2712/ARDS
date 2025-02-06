@@ -3,7 +3,6 @@ import 'package:ards/widgets/background-image-dashboard.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import 'barline.dart';
 class Trainlistdetails extends StatelessWidget {
   final String data; // Variable to hold the received data
 

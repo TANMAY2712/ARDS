@@ -8,15 +8,16 @@ void main() {
 }
 
 class Help extends StatelessWidget {
+  const Help({super.key});
   // Contact Information List
-  final List<Map<String, dynamic>> contactInfo = [
-    {"title": "Help Number", "value": "+123-456-7890", "color": Colors.redAccent},
-    {"title": "WhatsApp", "value": "+123-456-7890", "color": Colors.green},
-    {"title": "E-Mail", "value": "help@example.com", "color": Colors.blueAccent},
-  ];
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> contactInfo = [
+      {"title": "Help Number", "value": "+123-456-7890", "color": Colors.redAccent},
+      {"title": "WhatsApp", "value": "+123-456-7890", "color": Colors.green},
+      {"title": "E-Mail", "value": "help@example.com", "color": Colors.blueAccent},
+    ];
     return Scaffold(
       body: Stack(
         children: [

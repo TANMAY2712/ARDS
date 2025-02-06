@@ -11,7 +11,6 @@ import '../preferences/SharedPrefService.dart';
 void main() {
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -23,6 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key}); // Use super.key here
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -118,39 +118,39 @@ class _HomePageState extends State<HomePage> {
 
 // Pages (fragments) for navigation
 class Home extends StatelessWidget {
-  final List<String> items = [
-    '12618',
-    '18645',
-    '12784',
-    '13846',
-    '18764',
-    '17365',
-    '20856',
-    '12418',
-  ];
-  final List<Color> colors = [
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.orange,
-    Colors.purple,
-    Colors.cyan,
-    Colors.yellow,
-    Colors.pink,
-  ];
-  String? selectedValue; // Stores the selected dropdown value
-  final List<String> dropdownItems = ['Platform 16', 'Platform 15', 'Platform 11', 'Platform 13'];
-
-
-  final List<String> points = [
-    "Shatabdi Express 22764 from Delhi to Punjab.",
-    "Rajdhani Express 14657 from Delhi to Lucknow",
-    "Chennai Express 23753 from Delhi to Chennai",
-    "Bhopal Shatabdi 16473 from Delhi to Bhopal",
-  ];
-
+  const Home({super.key});
   @override
   Widget build(BuildContext context) {
+    final List<String> items = [
+      '12618',
+      '18645',
+      '12784',
+      '13846',
+      '18764',
+      '17365',
+      '20856',
+      '12418',
+    ];
+    final List<Color> colors = [
+      Colors.red,
+      Colors.blue,
+      Colors.green,
+      Colors.orange,
+      Colors.purple,
+      Colors.cyan,
+      Colors.yellow,
+      Colors.pink,
+    ];
+    String? selectedValue; // Stores the selected dropdown value
+    final List<String> dropdownItems = ['Platform 16', 'Platform 15', 'Platform 11', 'Platform 13'];
+
+
+    final List<String> points = [
+      "Shatabdi Express 22764 from Delhi to Punjab.",
+      "Rajdhani Express 14657 from Delhi to Lucknow",
+      "Chennai Express 23753 from Delhi to Chennai",
+      "Bhopal Shatabdi 16473 from Delhi to Bhopal",
+    ];
     return Stack(
       children: [
         BackgroundImageDashboard(),
