@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ards/main.dart'; // Update with the correct import path for your app
+import 'package:ards/main.dart';
+import 'package:ards/login/login-page.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Load the app
+  testWidgets('App launches and shows LoginPage', (WidgetTester tester) async {
+    // Load MyApp
     await tester.pumpWidget(MyApp());
 
-    // Verify counter starts at "0"
-    expect(find.text('0'), findsOneWidget);
+    // Wait for UI to build
+    await tester.pumpAndSettle();
 
-    // Find the floating action button
-    final Finder fab = find.byIcon(Icons.add);
-    expect(fab, findsOneWidget);
-
-    // Tap the button and trigger a frame
-    await tester.tap(fab);
-    await tester.pump();
-
-    // Verify counter increments to "1"
-    expect(find.text('1'), findsOneWidget);
+    // Verify LoginPage is displayed
+    expect(find.byType(LoginPage), findsOneWidget);
   });
 }
