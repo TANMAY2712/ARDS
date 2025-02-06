@@ -25,10 +25,10 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatefulWidget {
   const HomePage({super.key}); // Use super.key here
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
 
   int _currentIndex = 0; // To track the selected tab
 
