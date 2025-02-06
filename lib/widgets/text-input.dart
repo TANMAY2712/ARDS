@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../palatte.dart';
+import 'palatte.dart';
 
 class TextInput extends StatelessWidget {
   const TextInput({
     Key? key,
+    required this.controler,
     required this.icon,
     required this.hint,
     required this.inputType,
@@ -15,6 +16,7 @@ class TextInput extends StatelessWidget {
   final String hint;
   final TextInputType inputType;
   final TextInputAction inputAction;
+  final TextEditingController controler;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class TextInput extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: TextField(
+          controller: controler,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 20),
             border: InputBorder.none,

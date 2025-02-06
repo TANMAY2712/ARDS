@@ -37,6 +37,9 @@ dependencies:
   google_fonts: ^6.2.1
   fl_chart: ^0.70.1
   video_player: ^2.4.5
+  http: ^1.0.0
+  shared_preferences: ^2.2.2 # Check for the latest version
+
 
 
 dev_dependencies:

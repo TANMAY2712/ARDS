@@ -1,14 +1,12 @@
 import 'package:ards/dashboard/trainListDetails.dart';
-import 'package:ards/dashboard/video.dart';
 import 'package:ards/home/help.dart';
-import 'package:ards/dashboard/insidents.dart';
 import 'package:ards/home/profile.dart';
 import 'package:ards/home/history.dart';
+import 'package:ards/login/login-page.dart';
 import 'package:ards/widgets/background-image-dashboard.dart';
-import 'package:ards/widgets/background-image.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
+import '../preferences/SharedPrefService.dart';
 
 void main() {
   runApp(MyApp());
@@ -58,6 +56,24 @@ class _HomePageState extends State<HomePage> {
     },
     child: Scaffold(
       appBar: AppBar(
+        actions: [
+          GestureDetector(
+            onTap: () async {
+              await SharedPrefService.logout();
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => LoginPage()));
+              // Navigate or perform an action here
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Image.asset(
+                "assets/images/logout.png",
+                width: 40,
+                height: 40,
+              ),
+            ),
+          ),
+        ],
         title: Text(_titles[_currentIndex]), // Set the title dynamically
         backgroundColor: Color(0xFF041477),
         titleTextStyle: TextStyle(

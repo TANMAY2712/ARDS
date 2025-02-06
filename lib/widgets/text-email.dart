@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 
 import 'palatte.dart';
 
-class PasswordInput extends StatelessWidget {
-  const PasswordInput({
+class TextEmail extends StatelessWidget {
+  const TextEmail({
     Key? key,
     required this.controler,
     required this.icon,
     required this.hint,
+    required this.inputType,
     required this.inputAction,
   }) : super(key: key);
 
   final IconData icon;
   final String hint;
+  final TextInputType inputType;
   final TextInputAction inputAction;
   final TextEditingController controler;
 
@@ -41,8 +43,8 @@ class PasswordInput extends StatelessWidget {
             ),
             hintStyle: kBodyText,
           ),
-          obscureText: true,
           style: kBodyText,
+          keyboardType: inputType,
           textInputAction: inputAction,
         ),
       ),
