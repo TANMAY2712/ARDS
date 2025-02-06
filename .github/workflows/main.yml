@@ -1,8 +1,8 @@
 name: CI
 on:
-  pull_request:
+  push:
     branches:
-      - master
+      - main # Specify the branch to trigger the build (e.g., main or master)
 
 jobs:
   flutter_test:
