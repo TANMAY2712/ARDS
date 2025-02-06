@@ -2,8 +2,8 @@ import 'package:ards/dashboard/dashboard.dart';
 import 'package:ards/widgets/background-image.dart';
 import 'package:flutter/material.dart';
 import 'package:ards/apiService/api_service.dart';
-import 'models/login.dart';
-import '../preferences/SharedPrefService.dart';
+import 'login/models/login.dart';
+import 'preferences/SharedPrefService.dart';
 
 class Otp extends StatefulWidget {
   final String data;

@@ -1,5 +1,5 @@
 import 'package:ards/apiService/api_service.dart';
-import 'package:ards/login/otp.dart';
+import 'package:ards/otp.dart';
 import 'package:ards/widgets/text-email.dart';
 import 'package:flutter/material.dart';
 import 'package:ards/widgets/palatte.dart';
