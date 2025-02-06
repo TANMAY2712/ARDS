@@ -4,9 +4,9 @@ import 'package:ards/main.dart';
 import 'package:ards/login/login-page.dart';
 
 void main() {
-  testWidgets('App launches and shows LoginPage', (WidgetTester tester) async {
+  testWidgets('ARDS Project', (WidgetTester tester) async {
     // Load MyApp
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(MyApp(isLoggedIn: false));
 
     // Wait for UI to build
     await tester.pumpAndSettle();
