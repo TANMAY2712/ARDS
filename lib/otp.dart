@@ -9,10 +9,10 @@ class Otp extends StatefulWidget {
   const Otp({required this.data});
   final String data;
   @override
-  _OtpInputPageState createState() => _OtpInputPageState();
+  OtpInputPageState createState() => OtpInputPageState();
 }
 
-class _OtpInputPageState extends State<Otp> {
+class OtpInputPageState extends State<Otp> {
   final List<TextEditingController> _controllers = List.generate(6, (_) => TextEditingController());
   bool _isLoading = false;
 

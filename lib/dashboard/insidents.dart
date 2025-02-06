@@ -10,10 +10,10 @@ void main() {
 class Insidents extends StatefulWidget {
   const Insidents({super.key}); // Use super.key here
   @override
-  _TrainHistoryScreenState createState() => _TrainHistoryScreenState();
+  TrainHistoryScreenState createState() => TrainHistoryScreenState();
 }
 
-class _TrainHistoryScreenState extends State<Insidents> {
+class TrainHistoryScreenState extends State<Insidents> {
   // List of train details
   List<Map<String, String>> trainHistory = [
     {"trainNo": "12345", "trainName": "Shatabdi Express", "route": "Delhi - Bhopal"},

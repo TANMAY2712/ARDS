@@ -10,10 +10,10 @@ void main() {
 class History extends StatefulWidget {
   const History({super.key});
   @override
-  _TrainHistoryScreenState createState() => _TrainHistoryScreenState();
+  TrainHistoryScreenState createState() => TrainHistoryScreenState();
 }
 
-class _TrainHistoryScreenState extends State<History> {
+class TrainHistoryScreenState extends State<History> {
   // Train history data
   List<Map<String, String>> trainHistory = [
     {
