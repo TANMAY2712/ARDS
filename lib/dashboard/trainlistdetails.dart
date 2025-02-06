@@ -1,11 +1,11 @@
 import 'package:ards/dashboard/insidents.dart';
-import 'package:ards/widgets/background-image-dashboard.dart';
+import 'package:ards/widgets/backgroundimagedashboard.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class Trainlistdetails extends StatelessWidget {
-  final String data; // Variable to hold the received data
   const Trainlistdetails({required this.data}); // Constructor to accept data
+  final String data; // Variable to hold the received data
   @override
   Widget build(BuildContext context) {
     final List<String> points = [

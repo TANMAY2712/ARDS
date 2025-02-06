@@ -1,7 +1,7 @@
 import 'package:ards/dashboard/dashboard.dart';
-import 'package:ards/login/login-page.dart';
+import 'package:ards/login/loginpage.dart';
 import 'package:ards/otp.dart';
-import 'package:ards/preferences/SharedPrefService.dart';
+import 'package:ards/preferences/sharedprefservice.dart';
 import 'package:flutter/material.dart';
 
 

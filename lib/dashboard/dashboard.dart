@@ -2,11 +2,11 @@ import 'package:ards/dashboard/trainlistdetails.dart';
 import 'package:ards/home/help.dart';
 import 'package:ards/home/profile.dart';
 import 'package:ards/home/history.dart';
-import 'package:ards/login/login-page.dart';
-import 'package:ards/widgets/background-image-dashboard.dart';
+import 'package:ards/login/loginpage.dart';
+import 'package:ards/widgets/backgroundimagedashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import '../preferences/SharedPrefService.dart';
+import '../preferences/sharedprefservice.dart';
 
 void main() {
   runApp(MyApp());
@@ -52,9 +52,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return PopScope(
         canPop: false,  // Prevents back navigation
-        onPopInvoked: (didPop) {
-          if (didPop) return;
-        },
     child: Scaffold(
       appBar: AppBar(
         actions: [
@@ -142,10 +139,6 @@ class Home extends StatelessWidget {
       Colors.yellow,
       Colors.pink,
     ];
-    String? selectedValue; // Stores the selected dropdown value
-    final List<String> dropdownItems = ['Platform 16', 'Platform 15', 'Platform 11', 'Platform 13'];
-
-
     final List<String> points = [
       "Shatabdi Express 22764 from Delhi to Punjab.",
       "Rajdhani Express 14657 from Delhi to Lucknow",
@@ -432,8 +425,6 @@ void showCustomDialog(BuildContext context) {
           ),
           ElevatedButton(
             onPressed: () {
-              String trainNo = trainController.text;
-              String stationName = stationController.text;
               Navigator.of(context).pop(); // Close the dialog
             },
             child: Text("Submit"),

@@ -1,13 +1,13 @@
 import 'package:ards/dashboard/dashboard.dart';
-import 'package:ards/widgets/background-image.dart';
+import 'package:ards/widgets/backgroundimage.dart';
 import 'package:flutter/material.dart';
 import 'package:ards/apiService/api_service.dart';
 import 'login/models/login.dart';
-import 'preferences/SharedPrefService.dart';
+import 'preferences/sharedprefservice.dart';
 
 class Otp extends StatefulWidget {
+  const Otp({required this.data});
   final String data;
-  Otp({required this.data});
   @override
   _OtpInputPageState createState() => _OtpInputPageState();
 }
@@ -154,7 +154,7 @@ class OtpTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
+            color: Color.alphaBlend(Colors.grey.withAlpha(51), Colors.white),
             spreadRadius: 2,
             blurRadius: 5,
             offset: Offset(0, 3),
