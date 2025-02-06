@@ -5,17 +5,16 @@ import 'package:flutter/material.dart';
 
 class Trainlistdetails extends StatelessWidget {
   final String data; // Variable to hold the received data
-
-  Trainlistdetails({required this.data}); // Constructor to accept data
-  final List<String> points = [
-    "Derailed near Nagpur Junction",
-    "Speed limit crossed near Ghaziabad",
-    "Derailed near Sultanpur",
-    "Power issue near Bhopal",
-    "Low pressure between cabins near Ghaziabad",
-  ];
+  const Trainlistdetails({required this.data}); // Constructor to accept data
   @override
   Widget build(BuildContext context) {
+    final List<String> points = [
+      "Derailed near Nagpur Junction",
+      "Speed limit crossed near Ghaziabad",
+      "Derailed near Sultanpur",
+      "Power issue near Bhopal",
+      "Low pressure between cabins near Ghaziabad",
+    ];
     return Scaffold(
       appBar: AppBar(
         title: Text(data+" - Mumbai Rajdhani Express"),

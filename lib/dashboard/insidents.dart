@@ -8,6 +8,7 @@ void main() {
 }
 
 class Insidents extends StatefulWidget {
+  const Insidents({super.key}); // Use super.key here
   @override
   _TrainHistoryScreenState createState() => _TrainHistoryScreenState();
 }

@@ -1,4 +1,4 @@
-import 'package:ards/dashboard/trainListDetails.dart';
+import 'package:ards/dashboard/trainlistdetails.dart';
 import 'package:ards/home/help.dart';
 import 'package:ards/home/profile.dart';
 import 'package:ards/home/history.dart';
@@ -12,6 +12,7 @@ void main() {
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
+  const MyApp({super.key}); // Use super.key here
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -49,11 +50,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () async {
-      // Returning false disables the back button
-      return false;
-    },
+    return PopScope(
+        canPop: false,  // Prevents back navigation
+        onPopInvoked: (didPop) {
+          if (didPop) return;
+        },
     child: Scaffold(
       appBar: AppBar(
         actions: [
@@ -289,7 +290,6 @@ class Home extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton.icon(
                     onPressed: () {
-                      print('Search Incident (Train/Part/name/Number)');
                     },
                     icon: Icon(Icons.search, color: Color(0xFFFFFFFF)),
                     label: Text(
@@ -327,7 +327,6 @@ class Home extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               showCustomDialog(context);
-              print('Floating Action Button Pressed!');
             },
             backgroundColor: Color(0xFF041477), // Change the background color
             child: Icon(
@@ -435,11 +434,6 @@ void showCustomDialog(BuildContext context) {
             onPressed: () {
               String trainNo = trainController.text;
               String stationName = stationController.text;
-
-              print("Train Number: $trainNo");
-              print("Station Name: $stationName");
-              print("Selected Side: $selectedSide");
-
               Navigator.of(context).pop(); // Close the dialog
             },
             child: Text("Submit"),
