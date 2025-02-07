@@ -11,9 +11,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final bool isLoggedIn;  // ✅ Define the field
-
-  const MyApp({Key? key, required this.isLoggedIn}) : super(key: key);  // ✅ Pass key and required parameter
-
+  const MyApp({super.key, required this.isLoggedIn});  // ✅ Pass key and required parameter
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
