@@ -48,8 +48,11 @@ class LoginPageState extends State<LoginPage> {
           otpResponse = OtpResponse.fromJson(response);
         });
         _showSnackBar(otpResponse!.data.otp.toString());
+
+        await Future.delayed(const Duration(seconds: 1));
+        if (!mounted) return; // Checks `this.mounted`, not `context.mounted`.
+        Navigator.of(context).pop();
         final navigator = Navigator.of(context); // ✅ Store Navigator reference before async call
-        await Future.delayed(Duration(seconds: 2));
         navigator.push(MaterialPageRoute(builder: (context) => Otp(data: otpResponse!.data.username.toString()))); // ✅ No context usage after await
       } else {
       }
