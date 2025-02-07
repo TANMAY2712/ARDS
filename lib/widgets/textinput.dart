@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-
 import 'palatte.dart';
 
 class TextInput extends StatelessWidget {
   const TextInput({
-    Key? key,
+    super.key,
     required this.controler,
     required this.icon,
     required this.hint,
     required this.inputType,
     required this.inputAction,
-  }) : super(key: key);
+  });
 
   final IconData icon;
   final String hint;

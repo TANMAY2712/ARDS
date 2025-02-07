@@ -5,7 +5,7 @@ import 'package:ards/apiService/api_service.dart';
 import 'preferences/sharedprefservice.dart';
 
 class Otp extends StatefulWidget {
-  const Otp({Key? key, required this.data}) : super(key: key);
+  const Otp({super.key, required this.data});
   final String data;
   @override
   OtpInputPageState createState() => OtpInputPageState();
@@ -50,15 +50,14 @@ class OtpInputPageState extends State<Otp> {
       if (response is Map<String, dynamic>) {
         setState(() {
         });
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomePage(),
-          ),
-        );
+        await Future.delayed(const Duration(seconds: 1));
+        if (!mounted) return; // Checks `this.mounted`, not `context.mounted`.
+        Navigator.of(context).pop();
+        final navigator = Navigator.of(context); // ✅ Store Navigator reference before async call
+        navigator.push(MaterialPageRoute(builder: (context) => HomePage())); // ✅ No context usage after await
+
       } else {
       }
-
     } finally {
       setState(() {
         _isLoading = false;
