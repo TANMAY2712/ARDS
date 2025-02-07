@@ -1,12 +1,13 @@
 name: CI
+
 on:
   push:
     branches:
-      - main # Specify the branch to trigger the build (e.g., main or master)
+      - main  # Trigger build when pushing to main branch
 
 jobs:
   flutter_test:
-    name: Run flutter test and analyze
+    name: Run Flutter Test and Analyze
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,7 +22,7 @@ jobs:
       - run: flutter test
 
   build_ios:
-    name: Build Flutter (iOS)
+    name: Build Flutter iOS (Release & Debug)
     needs: [flutter_test]
     runs-on: macos-latest
     steps:
@@ -34,10 +35,11 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build ios --release --no-codesign
+      - run: flutter build ios --release --no-codesign  # Release build
+      - run: flutter build ios --debug --no-codesign  # Debug build
 
-  build_appbundle:
-    name: Build Flutter (Android)
+  build_android:
+    name: Build Flutter Android (Release & Debug)
     needs: [flutter_test]
     runs-on: ubuntu-latest
     steps:
@@ -50,4 +52,5 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build appbundle
+      - run: flutter build appbundle  # Release build
+      - run: flutter build apk --debug  # Debug build
