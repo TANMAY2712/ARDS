@@ -57,10 +57,9 @@ class HomePageState extends State<HomePage> {
         actions: [
           GestureDetector(
             onTap: () async {
-              await SharedPrefService.logout();
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => LoginPage()));
-              // Navigate or perform an action here
+              final navigator = Navigator.of(context); // ✅ Store Navigator reference before async call
+              await Future.delayed(Duration(seconds: 2));
+              navigator.push(MaterialPageRoute(builder: (context) => LoginPage())); // ✅ No context usage after await
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 10),
@@ -256,7 +255,7 @@ class Home extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Trainlistdetails(data: "${items[index]}"),
+                              builder: (context) => Trainlistdetails(data: items[index]),
                             ),
                           );
                         },

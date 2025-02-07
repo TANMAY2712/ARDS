@@ -24,7 +24,7 @@ class TextInput extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey[600]?.withOpacity(0.5),
+          color: Color.alphaBlend(Colors.grey.withAlpha(600), Colors.transparent),
           borderRadius: BorderRadius.circular(16),
         ),
         child: TextField(

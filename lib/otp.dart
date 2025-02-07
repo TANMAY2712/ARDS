@@ -2,7 +2,6 @@ import 'package:ards/dashboard/dashboard.dart';
 import 'package:ards/widgets/backgroundimage.dart';
 import 'package:flutter/material.dart';
 import 'package:ards/apiService/api_service.dart';
-import 'login/models/login.dart';
 import 'preferences/sharedprefservice.dart';
 
 class Otp extends StatefulWidget {
@@ -24,7 +23,6 @@ class OtpInputPageState extends State<Otp> {
   // Function to call the OTP verification API
   Future<void> verifyOtp() async {
     String otp = getOtp();
-    OtpResponse? otpResponse;
 
     if (otp.length < 6) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -51,7 +49,6 @@ class OtpInputPageState extends State<Otp> {
 
       if (response is Map<String, dynamic>) {
         setState(() {
-          otpResponse = OtpResponse.fromJson(response);
         });
         Navigator.push(
           context,
@@ -60,13 +57,8 @@ class OtpInputPageState extends State<Otp> {
           ),
         );
       } else {
-        print("Invalid response format");
       }
 
-    } catch (e) {
-     /* ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("An error occurred: $e")),
-      );*/
     } finally {
       setState(() {
         _isLoading = false;
@@ -154,7 +146,7 @@ class OtpTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: Color.alphaBlend(Colors.grey.withAlpha(51), Colors.white),
+            color: Color.alphaBlend(Colors.grey.withAlpha(51), Colors.transparent),
             spreadRadius: 2,
             blurRadius: 5,
             offset: Offset(0, 3),

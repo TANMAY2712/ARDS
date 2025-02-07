@@ -48,12 +48,9 @@ class LoginPageState extends State<LoginPage> {
           otpResponse = OtpResponse.fromJson(response);
         });
         _showSnackBar(otpResponse!.data.otp.toString());
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Otp(data: otpResponse!.data.username.toString()),
-          ),
-        );
+        final navigator = Navigator.of(context); // ✅ Store Navigator reference before async call
+        await Future.delayed(Duration(seconds: 2));
+        navigator.push(MaterialPageRoute(builder: (context) => Otp(data: otpResponse!.data.username.toString()))); // ✅ No context usage after await
       } else {
       }
         // Navigate to the HomePage
@@ -85,7 +82,7 @@ class LoginPageState extends State<LoginPage> {
             child: SafeArea(
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 150,
                     child: Center(
                       child: Text(
@@ -133,11 +130,6 @@ class LoginPageState extends State<LoginPage> {
                               child:
                               ElevatedButton(
                                 onPressed: _isLoading ? null : login,
-                                child: _isLoading
-                                    ? CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                )
-                                    : Text('Login'),
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(200, 60),
                                   textStyle: TextStyle(
@@ -145,6 +137,11 @@ class LoginPageState extends State<LoginPage> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
+                                child: _isLoading
+                                    ? CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                )
+                                    : Text('Login'),
                               ),
                             )
                           ],

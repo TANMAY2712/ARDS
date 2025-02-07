@@ -4,7 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class Trainlistdetails extends StatelessWidget {
-  const Trainlistdetails({required this.data}); // Constructor to accept data
+  const Trainlistdetails({super.key, required this.data}); // Constructor to accept data
   final String data; // Variable to hold the received data
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class Trainlistdetails extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: Text(data+" - Mumbai Rajdhani Express"),
+        title: Text("$data - Mumbai Rajdhani Express"),
         centerTitle: true,
         iconTheme: IconThemeData(
           color: Colors.white, // Change the back button color to green
