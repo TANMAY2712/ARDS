@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class OtpResponse {
   final int responseCode;

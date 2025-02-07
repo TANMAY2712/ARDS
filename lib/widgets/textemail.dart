@@ -4,13 +4,13 @@ import 'palatte.dart';
 
 class TextEmail extends StatelessWidget {
   const TextEmail({
-    Key? key,
+    super.key,
     required this.controler,
     required this.icon,
     required this.hint,
     required this.inputType,
     required this.inputAction,
-  }) : super(key: key);
+  });
 
   final IconData icon;
   final String hint;

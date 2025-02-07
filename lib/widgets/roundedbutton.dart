@@ -4,9 +4,9 @@ import 'palatte.dart';
 
 class RoundedButton extends StatelessWidget {
   const RoundedButton({
-    Key? key,
+    super.key,
     required this.buttonText,
-  }) : super(key: key);
+  });
 
   final String buttonText;
 
@@ -18,7 +18,7 @@ class RoundedButton extends StatelessWidget {
         color: Colors.blue,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: FlatButton(
+      child: flatbuttons(
         onPressed: () {},
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -32,5 +32,5 @@ class RoundedButton extends StatelessWidget {
   }
 }
 
-FlatButton({required Null Function() onPressed, required Padding child}) {
+flatbuttons({required Null Function() onPressed, required Padding child}) {
 }

@@ -6,7 +6,6 @@ import 'package:ards/login/loginpage.dart';
 import 'package:ards/widgets/backgroundimagedashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import '../preferences/sharedprefservice.dart';
 
 void main() {
   runApp(MyApp());

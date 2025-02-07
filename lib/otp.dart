@@ -5,7 +5,7 @@ import 'package:ards/apiService/api_service.dart';
 import 'preferences/sharedprefservice.dart';
 
 class Otp extends StatefulWidget {
-  const Otp({required this.data});
+  const Otp({Key? key, required this.data}) : super(key: key);
   final String data;
   @override
   OtpInputPageState createState() => OtpInputPageState();
@@ -133,7 +133,7 @@ class OtpInputPageState extends State<Otp> {
 class OtpTextField extends StatelessWidget {
   final TextEditingController controller;
 
-  OtpTextField({required this.controller});
+  const OtpTextField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
