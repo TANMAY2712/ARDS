@@ -38,18 +38,6 @@ jobs:
       - run: flutter build ios --release --no-codesign  # Release build
       - run: flutter build ios --debug --no-codesign  # Debug build
 
-      - name: Generate Debug IPA
-        run: |
-          mkdir -p build/ios/debug-ipa
-          cd ios
-          xcodebuild -workspace Runner.xcworkspace -scheme Runner -sdk iphoneos -configuration Debug build CODE_SIGNING_ALLOWED=NO
-          cp -r build/ios/iphoneos/*.app ../build/ios/debug-ipa/
-      - name: Upload Debug IPA
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-ipa
-          path: build/ios/debug-ipa/*.app
-
   build_android:
     name: Build Flutter Android (Release & Debug)
     needs: [flutter_test]
