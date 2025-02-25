@@ -39,6 +39,8 @@ dependencies:
   video_player: ^2.4.5
   http: ^1.0.0
   shared_preferences: ^2.2.2 # Check for the latest version
+  chewie: ^1.7.4  # Adds UI controls
+
 
 
 

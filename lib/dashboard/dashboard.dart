@@ -63,7 +63,7 @@ class HomePageState extends State<HomePage> {
             child: Padding(
               padding: const EdgeInsets.only(right: 10),
               child: Image.asset(
-                "assets/images/logout.png",
+                  "assets/images/logout.png",
                 width: 40,
                 height: 40,
               ),
@@ -71,7 +71,7 @@ class HomePageState extends State<HomePage> {
           ),
         ],
         title: Text(_titles[_currentIndex]), // Set the title dynamically
-        backgroundColor: Color(0xFF041477),
+        backgroundColor: Color(0xFF393262),
         titleTextStyle: TextStyle(
             color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
         centerTitle: true,

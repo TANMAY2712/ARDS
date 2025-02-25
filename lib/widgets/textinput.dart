@@ -23,7 +23,7 @@ class TextInput extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Color.alphaBlend(Colors.grey.withAlpha(600), Colors.transparent),
+          color: Color.alphaBlend(Colors.black.withAlpha(600), Colors.transparent),
           borderRadius: BorderRadius.circular(16),
         ),
         child: TextField(
@@ -43,6 +43,7 @@ class TextInput extends StatelessWidget {
             hintStyle: kBodyText,
           ),
           style: kBodyText,
+          cursorColor: Colors.white,
           keyboardType: inputType,
           textInputAction: inputAction,
         ),

@@ -1,6 +1,8 @@
 import 'package:ards/dashboard/dashboard.dart';
 import 'package:ards/login/loginpage.dart';
+import 'package:ards/newdashboard/dashboard.dart';
 import 'package:ards/preferences/sharedprefservice.dart';
+import 'package:ards/video_streaming.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: isLoggedIn ? HomePage() : LoginPage(),  // ✅ Now correctly uses isLoggedIn
+      home: isLoggedIn ? Dashboard() : LoginPage(),  // ✅ Now correctly uses isLoggedIn
     );
   }
 }

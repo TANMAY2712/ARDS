@@ -15,11 +15,9 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   List<dynamic> posts = [];
-  bool isLoading = true;
 
   final TextEditingController _mobileController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  bool _isLoading = false;
 
   // Function to handle the API call
   Future<void> login() async {
@@ -31,13 +29,8 @@ class LoginPageState extends State<LoginPage> {
       return;
     }
 
-    setState(() {
-      _isLoading = true;
-    });
-
-
     try {
-      var response = await ApiService.postRequest("Login/GenrateOTP", {
+      var response = await ApiService.postRequest(context,"Login/GenrateOTP", {
         'Username': mobile, 'APIKey': "AR-AUG-ARST-BIZBR-2019OLLY"
         , 'CountryCode': "+91", 'email': email,
       });
@@ -61,10 +54,6 @@ class LoginPageState extends State<LoginPage> {
 
     } catch (e) {
       _showSnackBar('An error occurred: $e');
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
     }
   }
 
@@ -86,19 +75,41 @@ class LoginPageState extends State<LoginPage> {
               child: Column(
                 children: [
                   SizedBox(
+                    height: 100,
+                  ),
+                  SizedBox(
                     height: 150,
-                    child: Center(
-                      child: Text(
-                        'Login',
-                        style: kHeading,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20), // Adjust left padding as needed
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Sign in to your Account',
+                          style: kHeading,
+
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 80,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 20), // Adjust left padding as needed
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Enter phone number to send on time password',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black, // Change text color here
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
                         Column(
@@ -111,16 +122,10 @@ class LoginPageState extends State<LoginPage> {
                               inputType: TextInputType.emailAddress,
                               inputAction: TextInputAction.next,
                             ),
-                            TextEmail(
-                              controler: _emailController,
-                              icon: FontAwesomeIcons.solidEnvelope,
-                              hint: 'Email (Optional)',
-                              inputType: TextInputType.emailAddress,
-                              inputAction: TextInputAction.done
-                            ),
+
                             Text(
                               'Forgot Password?',
-                              style: kBodyText,
+                              style: forgotText,
                             ),
                           ],
                         ),
@@ -129,23 +134,24 @@ class LoginPageState extends State<LoginPage> {
                             SizedBox(height: 50), // Space on top
                             SizedBox(
                               height: 60,
-                              width: 200,
+                              width: 400,
                               child:
                               ElevatedButton(
-                                onPressed: _isLoading ? null : login,
+                                onPressed: login,
                                 style: ElevatedButton.styleFrom(
                                   minimumSize: Size(200, 60),
-                                  textStyle: TextStyle(
+                                  backgroundColor: Color(0xFF393262), // Background color
+                                ),
+                                child: Text(
+                                  'Send OTP',
+                                  style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white, // Change text color here
                                   ),
                                 ),
-                                child: _isLoading
-                                    ? CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                )
-                                    : Text('Login'),
-                              ),
+                              )
+
                             )
                           ],
                         )
