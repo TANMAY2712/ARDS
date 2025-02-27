@@ -1,11 +1,6 @@
+import 'package:ards/newdashboard/recentitemcardadapter.dart';
 import 'package:ards/widgets/backgroundimagedashboard.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: History(),
-  ));
-}
 
 class History extends StatefulWidget {
   const History({super.key});
@@ -14,79 +9,84 @@ class History extends StatefulWidget {
 }
 
 class TrainHistoryScreenState extends State<History> {
-  // Train history data
-  List<Map<String, String>> trainHistory = [
+  final TextEditingController _searchController = TextEditingController();
+
+  final List<Map<String, dynamic>> _trainList = [
+    {
+      "trainName": "Sabarmati Express",
+      "trainNumber": "12578",
+      "source": "DELHI",
+      "destination": "BHOPAL",
+      "departureTime": "11:00",
+      "arrivalTime": "23:35",
+      "faults": 2,
+    },
     {
       "trainName": "Shatabdi Express",
-      "trainNo": "12345",
-      "platformNo": "16",
-      "side": "Left"
+      "trainNumber": "12002",
+      "source": "MUMBAI",
+      "destination": "PUNE",
+      "departureTime": "06:00",
+      "arrivalTime": "09:00",
+      "faults": 1,
     },
     {
       "trainName": "Rajdhani Express",
-      "trainNo": "67890",
-      "platformNo": "15",
-      "side": "Right"
-    },
-    {
-      "trainName": "Duronto Express",
-      "trainNo": "11223",
-      "platformNo": "12",
-      "side": "Left"
-    },
-    {
-      "trainName": "Chennai Express",
-      "trainNo": "44556",
-      "platformNo": "14",
-      "side": "Right"
-    },
-    {
-      "trainName": "Rajdhani Express",
-      "trainNo": "77889",
-      "platformNo": "15",
-      "side": "Left"
+      "trainNumber": "12951",
+      "source": "DELHI",
+      "destination": "MUMBAI",
+      "departureTime": "16:30",
+      "arrivalTime": "08:45",
+      "faults": 3,
     },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      appBar: AppBar(
+        title: Text(
+          'History',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF041477),
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFFD9D9D9),
+      ),
+      backgroundColor: Color(0xFFD9D9D9),
+      body: Column(
         children: [
-          // Background Image
-          BackgroundImageDashboard(),
-          // Content
-          ListView.builder(
-            itemCount: trainHistory.length,
-            itemBuilder: (context, index) {
-              final train = trainHistory[index];
-              return Card(
-                margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                elevation: 3,
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Color(0xFF041477),
-                    child: Icon(
-                      Icons.train, // Train icon
-                      color: Colors.white, // Icon color
-                    ),
-                  ),
-                  title: Text(
-                    "${train["trainName"]!} (${train["trainNo"]!})",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: Text(
-                    "Platform: ${train["platformNo"]}, Side: ${train["side"]}",
-                  ),
-                  trailing: Icon(
-                    train["side"] == "Left"
-                        ? Icons.arrow_back // Icon for left side
-                        : Icons.arrow_forward, // Icon for right side
-                    color: Colors.grey,
-                  ),
+          // 🔹 Search Bar (Without Filtering)
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: 'Search Train No./ Name...',
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
-              );
-            },
+                filled: true,
+                fillColor: Colors.white,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Stack(
+              children: [
+                BackgroundImageDashboard(),
+                ListView.builder(
+                  itemCount: _trainList.length,
+                  itemBuilder: (context, index) {
+                    return TrainCard(trainData: _trainList[index]);
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),

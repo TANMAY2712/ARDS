@@ -1,3 +1,4 @@
+import 'package:ards/widgets/backgroundimagedashboard.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,8 +12,21 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Profile',
+          style: TextStyle(
+            fontSize: 40,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF041477),
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFFD9D9D9),
+      ),
       body: Stack(
           children: [
+            BackgroundImageDashboard(),
           // Background Image
          // BackgroundImageDashboard(),
        Padding(

@@ -1,30 +1,51 @@
+import 'package:ards/dashboard/dash.dart';
+import 'package:ards/home/help.dart';
+import 'package:ards/home/history.dart';
+import 'package:ards/home/profile.dart';
+import 'package:ards/newdashboard/recentitemcardadapter.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(Dashboard());
+  runApp(Dash());
 }
 
-class Dashboard extends StatelessWidget {
-  final List<String> recentItems = [
-    'Recent File 1',
-    'Recent File 2',
-    'Recent File 3',
-    'Recent File 4',
-    'Recent File 5',
-    'Recent File 6',
-    'Recent File 7',
-    'Recent File 8',
-    'Recent File 9',
-    'Recent File 10',
-  ];
+class Dash extends StatefulWidget {
+  @override
+  _DashboardState createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dash> {
   int _currentIndex = 0; // To track the selected tab
 
-  // Titles for each fragment
-  final List<String> _titles = [
-    'Dashboard',
-    'History',
-    'Profile',
-    'Help',
+  // Train list data
+  final List<Map<String, dynamic>> trainList = [
+    {
+      "trainName": "Sabarmati Express",
+      "trainNumber": "12578",
+      "source": "DELHI",
+      "destination": "BHOPAL",
+      "departureTime": "11:00",
+      "arrivalTime": "23:35",
+      "faults": 2,
+    },
+    {
+      "trainName": "Shatabdi Express",
+      "trainNumber": "12002",
+      "source": "MUMBAI",
+      "destination": "PUNE",
+      "departureTime": "06:00",
+      "arrivalTime": "09:00",
+      "faults": 1,
+    },
+    {
+      "trainName": "Rajdhani Express",
+      "trainNumber": "12951",
+      "source": "DELHI",
+      "destination": "MUMBAI",
+      "departureTime": "16:30",
+      "arrivalTime": "08:45",
+      "faults": 3,
+    },
   ];
 
   @override
@@ -43,7 +64,7 @@ class Dashboard extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Color(0xFFD9D9D9),
         ),
-        backgroundColor: Color(0xFFD9D9D9),
+          backgroundColor: Color(0xFFD9D9D9),
         body: Column(
           children: [
             Expanded(
@@ -60,11 +81,10 @@ class Dashboard extends StatelessWidget {
             ),
             Expanded(
               flex: 1,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Hi Again',
@@ -76,32 +96,20 @@ class Dashboard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Recents',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
+                    Text(
+                      'Recents',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
                       ),
                     ),
                     SizedBox(height: 10),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: recentItems.length,
+                        itemCount: trainList.length,
                         itemBuilder: (context, index) {
-                          return ListTile(
-                            leading: Icon(Icons.history, color: Colors.blue),
-                            title: Text(
-                              recentItems[index],
-                              style: TextStyle(fontSize: 18, color: Colors.black87),
-                            ),
-                            onTap: () {
-                              print('Clicked on ${recentItems[index]}');
-                            },
-                          );
+                          return TrainCard(trainData: trainList[index]);
                         },
                       ),
                     ),
@@ -111,71 +119,108 @@ class Dashboard extends StatelessWidget {
             ),
           ],
         ),
-
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex, // Highlight the selected tab
-          onTap: (index) {
-            // Handle navigation
-          },
-          selectedFontSize: 12, // Set font size for selected item
-          unselectedFontSize: 12, // Set font size for unselected items
-          items: [
-            BottomNavigationBarItem(
-              icon: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset("assets/images/home.png", width: 25, height: 25),
-                  SizedBox(height: 5), // Space between icon and text
-                ],
-              ),
-              label: 'Dashboard',
-            ),
-            BottomNavigationBarItem(
-              icon: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset("assets/images/search.png", width: 25, height: 25),
-                  SizedBox(height: 5),
-                ],
-              ),
-              label: 'History',
-            ),
-            BottomNavigationBarItem(
-              icon: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset("assets/images/scanner.png", width: 45, height: 45),
-                ],
-              ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset("assets/images/history.png", width: 25, height: 25),
-                  SizedBox(height: 5),
-                ],
-              ),
-              label: 'Profile',
-            ),
-            BottomNavigationBarItem(
-              icon: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset("assets/images/user.png", width: 25, height: 25),
-                  SizedBox(height: 5),
-                ],
-              ),
-              label: 'Help',
-            ),
-          ],
-          selectedItemColor: Color(0xFF041477), // Active tab color
-          unselectedItemColor: Colors.grey, // Inactive tab color
-          type: BottomNavigationBarType.fixed, // Prevent shifting effect
-        ),
-
       ),
     );
   }
+}
+
+void showCustomDialog(BuildContext context) {
+  TextEditingController trainController = TextEditingController();
+  TextEditingController stationController = TextEditingController();
+  String selectedSide = "Left";
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        title: Text("Please fill required information"),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Train Number Input Field
+              SizedBox(height: 15),
+              TextField(
+                controller: trainController,
+                decoration: InputDecoration(
+                  labelText: "Train Number",
+                  prefixIcon: Icon(Icons.train),
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 15),
+
+              // Station Name Input Field
+              TextField(
+                controller: stationController,
+                decoration: InputDecoration(
+                  labelText: "Station Name",
+                  prefixIcon: Icon(Icons.location_on),
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 15),
+
+              // Radio Buttons for Side Selection
+              Row(
+                children: [
+                  Text("Choose Side:"),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Radio<String>(
+                          value: "Left",
+                          groupValue: selectedSide,
+                          onChanged: (value) {
+                            selectedSide = value!;
+                            Navigator.of(context).pop();
+                            showCustomDialog(context); // To refresh dialog state
+                          },
+                        ),
+                        Text("Left"),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Radio<String>(
+                          value: "Right",
+                          groupValue: selectedSide,
+                          onChanged: (value) {
+                            selectedSide = value!;
+                            Navigator.of(context).pop();
+                            showCustomDialog(context); // To refresh dialog state
+                          },
+                        ),
+                        Text("Right"),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: Text("Cancel"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: Text("Submit"),
+          ),
+        ],
+      );
+    },
+  );
 }

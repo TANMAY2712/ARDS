@@ -19,6 +19,18 @@ class Help extends StatelessWidget {
       {"title": "E-Mail", "value": "help@example.com", "color": Colors.blueAccent},
     ];
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Help',
+          style: TextStyle(
+            fontSize: 40,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF041477),
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Color(0xFFD9D9D9),
+      ),
       body: Stack(
         children: [
           // Background Image

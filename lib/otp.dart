@@ -1,4 +1,5 @@
-import 'package:ards/dashboard/dashboard.dart';
+import 'package:ards/dashboard/dash.dart';
+import 'package:ards/main.dart';
 import 'package:ards/widgets/backgroundimage.dart';
 import 'package:ards/widgets/palatte.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class OtpInputPageState extends State<Otp> {
         if (!mounted) return; // Checks `this.mounted`, not `context.mounted`.
         Navigator.of(context).pop();
         final navigator = Navigator.of(context); // ✅ Store Navigator reference before async call
-        navigator.push(MaterialPageRoute(builder: (context) => HomePage())); // ✅ No context usage after await
+        navigator.push(MaterialPageRoute(builder: (context) => Dashboard())); // ✅ No context usage after await
 
       } else {
       }
